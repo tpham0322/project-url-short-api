@@ -2,86 +2,1011 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Shortly URL shortening API Challenge</title>
+  <title>Shortly URL Shortener</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
 </head>
-<body>
 
-  Features
-  Pricing
-  Resources
+<body class="overflow-x-hidden font-['Poppins'] text-[#2f2f3f]">
 
-  Login
-  Sign Up
+  <!-- Header -->
+  <header class="bg-white py-8">
+    <nav
+      class="mx-auto flex w-[calc(100%-48px)] max-w-[1110px] items-center gap-12"
+      aria-label="Main navigation"
+    >
 
-  More than just shorter links
+      <!-- Logo -->
+      <a
+        href="#"
+        class="text-[32px] font-bold leading-none text-[#3b3054]"
+      >
+        Shortly
+      </a>
 
-  Build your brand’s recognition and get detailed insights 
-  on how your links are performing.
+      <!-- Mobile Menu Button -->
+      <button
+        class="ml-auto flex flex-col gap-1 md:hidden"
+        type="button"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="block h-[3px] w-6 bg-[#9e9aa7]"></span>
+        <span class="block h-[3px] w-6 bg-[#9e9aa7]"></span>
+        <span class="block h-[3px] w-6 bg-[#9e9aa7]"></span>
+      </button>
 
-  Get Started
-  
-  Shorten a link here...
+      <!-- Navigation Menu -->
+      <div
+        id="nav-menu"
+        class="
+          absolute left-6 right-6 top-[85px] z-50 hidden
+          flex-col gap-8 rounded-xl bg-[#3b3054] p-8
+          md:static md:flex md:flex-1 md:flex-row
+          md:items-center md:justify-between
+          md:gap-0 md:bg-transparent md:p-0
+        "
+      >
 
-  Shorten It!
+        <ul
+          class="
+            flex flex-col items-center gap-8
+            border-b border-white/20 pb-7
+            md:flex-row md:gap-8
+            md:border-0 md:pb-0
+          "
+        >
+          <li>
+            <a
+              href="#features"
+              class="
+                font-bold text-white
+                hover:text-[#2acfcf]
+                md:text-[15px]
+                md:text-[#9e9aa7]
+              "
+            >
+              Features
+            </a>
+          </li>
 
-  Advanced Statistics
+          <li>
+            <a
+              href="#pricing"
+              class="
+                font-bold text-white
+                hover:text-[#2acfcf]
+                md:text-[15px]
+                md:text-[#9e9aa7]
+              "
+            >
+              Pricing
+            </a>
+          </li>
 
-  Track how your links are performing across the web with our 
-  advanced statistics dashboard.
+          <li>
+            <a
+              href="#resources"
+              class="
+                font-bold text-white
+                hover:text-[#2acfcf]
+                md:text-[15px]
+                md:text-[#9e9aa7]
+              "
+            >
+              Resources
+            </a>
+          </li>
+        </ul>
 
-  Brand Recognition
+        <div
+          class="
+            flex flex-col items-center gap-8
+            md:flex-row md:gap-8
+          "
+        >
+          <a
+            href="#login"
+            class="
+              font-bold text-white
+              hover:text-[#2acfcf]
+              md:text-[15px]
+              md:text-[#9e9aa7]
+            "
+          >
+            Login
+          </a>
 
-  Boost your brand recognition with each click. Generic links don’t 
-  mean a thing. Branded links help instil confidence in your content.
+          <a
+            href="#signup"
+            class="
+              w-full rounded-full
+              bg-[#2acfcf]
+              px-6 py-2
+              text-center
+              font-bold text-white
+              transition-opacity
+              hover:opacity-70
+              md:w-auto
+            "
+          >
+            Sign Up
+          </a>
+        </div>
 
-  Detailed Records
+      </div>
 
-  Gain insights into who is clicking your links. Knowing when and where 
-  people engage with your content helps inform better decisions.
+    </nav>
+  </header>
 
-  Fully Customizable
 
-  Improve brand awareness and content discoverability through customizable 
-  links, supercharging audience engagement.
+  <main>
 
-  Boost your links today
+    <!-- Hero -->
+    <section
+      class="
+        mx-auto flex
+        w-[calc(100%-48px)]
+        max-w-[1110px]
+        flex-col-reverse
+        items-center
+        pb-[130px]
+        pt-5
+        text-center
+        md:min-h-[530px]
+        md:flex-row
+        md:pb-[70px]
+        md:pt-10
+        md:text-left
+      "
+    >
 
-  Get Started
+      <!-- Hero Content -->
+      <div
+        class="
+          relative z-10
+          flex-1
+          md:max-w-[600px]
+        "
+      >
 
-  Features
+        <h1
+          class="
+            mb-3
+            text-[40px]
+            font-bold
+            leading-[1.15]
+            text-[#232127]
+            sm:text-[48px]
+            md:text-[clamp(42px,5vw,72px)]
+          "
+        >
+          More than just shorter links
+        </h1>
 
-  Link Shortening
-  Branded Links
-  Analytics
+        <p
+          class="
+            mx-auto
+            mb-8
+            max-w-[540px]
+            text-base
+            text-[#9e9aa7]
+            md:mx-0
+            md:text-xl
+          "
+        >
+          Build your brand's recognition and get detailed insights
+          on how your links are performing.
+        </p>
 
-  Resources
+        <a
+          href="#shorten"
+          class="
+            inline-block
+            rounded-full
+            bg-[#2acfcf]
+            px-[30px]
+            py-[11px]
+            font-bold
+            text-white
+            transition-opacity
+            hover:opacity-70
+          "
+        >
+          Get Started
+        </a>
 
-  Blog
-  Developers
-  Support
+      </div>
 
-  Company
 
-  About
-  Our Team
-  Careers
-  Contact
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+      <!-- Hero Image -->
+      <div
+        class="
+          mb-10
+          flex-1
+          md:mb-0
+        "
+      >
+        <img
+          src="/images/illustration-working.svg"
+          alt="Person working with shortened links"
+          class="
+            w-[600px]
+            max-w-none
+            translate-x-[15%]
+            md:w-[700px]
+            md:translate-x-20
+          "
+        >
+      </div>
+
+    </section>
+
+
+    <!-- URL Shortener -->
+    <section
+      id="shorten"
+      class="bg-[#eff1f7] pb-[100px]"
+    >
+
+      <div
+        class="
+          mx-auto
+          w-[calc(100%-48px)]
+          max-w-[1110px]
+        "
+      >
+
+        <form
+          id="shortener-form"
+          class="
+            relative
+            top-[-68px]
+            flex
+            flex-col
+            gap-6
+            rounded-[10px]
+            bg-[#3b3054]
+            bg-[url('/images/bg-shorten-mobile.svg')]
+            bg-cover
+            bg-center
+            p-6
+            md:flex-row
+            md:items-stretch
+            md:bg-[url('/images/bg-shorten-desktop.svg')]
+            md:px-16
+            md:py-[52px]
+          "
+        >
+
+          <!-- URL Input -->
+          <div class="relative flex-1">
+
+            <label
+              for="url-input"
+              class="sr-only"
+            >
+              Enter a URL to shorten
+            </label>
+
+            <input
+              id="url-input"
+              name="url"
+              type="url"
+              placeholder="Shorten a link here..."
+              autocomplete="url"
+              aria-describedby="url-error"
+              class="
+                min-h-16
+                w-full
+                rounded-[7px]
+                border-[3px]
+                border-transparent
+                bg-white
+                px-5
+                text-[#232127]
+                outline-none
+                placeholder:text-[#9e9aa7]
+                focus:border-[#2acfcf]
+              "
+            >
+
+            <p
+              id="url-error"
+              class="
+                absolute
+                left-0
+                top-[calc(100%+3px)]
+                text-[13px]
+                italic
+                text-[#f46262]
+              "
+              role="alert"
+            ></p>
+
+          </div>
+
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="
+              min-w-[150px]
+              rounded-[7px]
+              bg-[#2acfcf]
+              px-6
+              py-3
+              font-bold
+              text-white
+              transition-opacity
+              hover:opacity-70
+              disabled:cursor-not-allowed
+              disabled:opacity-60
+            "
+          >
+            Shorten It!
+          </button>
+
+        </form>
+
+
+        <!-- Shortened Links -->
+        <div
+          id="results"
+          class="
+            mt-[-44px]
+            flex
+            flex-col
+            gap-4
+          "
+          aria-live="polite"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Statistics -->
+    <section
+      id="features"
+      class="bg-[#eff1f7] pb-[120px]"
+    >
+
+      <div
+        class="
+          mx-auto
+          w-[calc(100%-48px)]
+          max-w-[1110px]
+        "
+      >
+
+        <!-- Section Heading -->
+        <div
+          class="
+            mx-auto
+            mb-[90px]
+            max-w-[520px]
+            text-center
+          "
+        >
+
+          <h2
+            class="
+              mb-3
+              text-[30px]
+              font-bold
+              text-[#232127]
+              md:text-[34px]
+            "
+          >
+            Advanced Statistics
+          </h2>
+
+          <p
+            class="
+              text-base
+              text-[#9e9aa7]
+            "
+          >
+            Track how your links are performing across the web
+            with our advanced statistics dashboard.
+          </p>
+
+        </div>
+
+
+        <!-- Feature Cards -->
+        <div
+          class="
+            relative
+            flex
+            flex-col
+            gap-20
+            md:grid
+            md:grid-cols-3
+            md:gap-[30px]
+          "
+        >
+
+          <!-- Connecting Line -->
+          <div
+            class="
+              absolute
+              bottom-0
+              left-1/2
+              top-0
+              w-2
+              -translate-x-1/2
+              bg-[#2acfcf]
+              md:left-[8%]
+              md:right-[8%]
+              md:top-[110px]
+              md:h-2
+              md:w-auto
+              md:translate-x-0
+            "
+            aria-hidden="true"
+          ></div>
+
+
+          <!-- Brand Recognition -->
+          <article
+            class="
+              relative
+              z-10
+              rounded-md
+              bg-white
+              px-8
+              pb-9
+              pt-[65px]
+              text-center
+              md:text-left
+            "
+          >
+
+            <div
+              class="
+                absolute
+                left-1/2
+                top-[-40px]
+                flex
+                h-20
+                w-20
+                -translate-x-1/2
+                items-center
+                justify-center
+                rounded-full
+                bg-[#3b3054]
+                md:left-8
+                md:translate-x-0
+              "
+            >
+              <img
+                src="/images/icon-brand-recognition.svg"
+                alt=""
+                class="h-10 w-10"
+              >
+            </div>
+
+            <h3
+              class="
+                mb-4
+                text-xl
+                font-bold
+              "
+            >
+              Brand Recognition
+            </h3>
+
+            <p
+              class="
+                text-[15px]
+                text-[#9e9aa7]
+              "
+            >
+              Boost your brand recognition with each click.
+              Generic links don't mean a thing. Branded links
+              help instil confidence in your content.
+            </p>
+
+          </article>
+
+
+          <!-- Detailed Records -->
+          <article
+            class="
+              relative
+              z-10
+              rounded-md
+              bg-white
+              px-8
+              pb-9
+              pt-[65px]
+              text-center
+              md:mt-11
+              md:text-left
+            "
+          >
+
+            <div
+              class="
+                absolute
+                left-1/2
+                top-[-40px]
+                flex
+                h-20
+                w-20
+                -translate-x-1/2
+                items-center
+                justify-center
+                rounded-full
+                bg-[#3b3054]
+                md:left-8
+                md:translate-x-0
+              "
+            >
+              <img
+                src="/images/icon-detailed-records.svg"
+                alt=""
+                class="h-10 w-10"
+              >
+            </div>
+
+            <h3
+              class="
+                mb-4
+                text-xl
+                font-bold
+              "
+            >
+              Detailed Records
+            </h3>
+
+            <p
+              class="
+                text-[15px]
+                text-[#9e9aa7]
+              "
+            >
+              Gain insights into who is clicking your links.
+              Knowing when and where people engage with your
+              content helps you make better decisions.
+            </p>
+
+          </article>
+
+
+          <!-- Fully Customizable -->
+          <article
+            class="
+              relative
+              z-10
+              rounded-md
+              bg-white
+              px-8
+              pb-9
+              pt-[65px]
+              text-center
+              md:mt-[88px]
+              md:text-left
+            "
+          >
+
+            <div
+              class="
+                absolute
+                left-1/2
+                top-[-40px]
+                flex
+                h-20
+                w-20
+                -translate-x-1/2
+                items-center
+                justify-center
+                rounded-full
+                bg-[#3b3054]
+                md:left-8
+                md:translate-x-0
+              "
+            >
+              <img
+                src="/images/icon-fully-customizable.svg"
+                alt=""
+                class="h-10 w-10"
+              >
+            </div>
+
+            <h3
+              class="
+                mb-4
+                text-xl
+                font-bold
+              "
+            >
+              Fully Customizable
+            </h3>
+
+            <p
+              class="
+                text-[15px]
+                text-[#9e9aa7]
+              "
+            >
+              Improve brand awareness and content discoverability
+              through customizable links, supercharging audience
+              engagement.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Boost -->
+    <section
+      class="
+        bg-[#3b3054]
+        bg-[url('/images/bg-boost-mobile.svg')]
+        bg-cover
+        bg-center
+        py-[65px]
+        text-center
+        text-white
+        md:bg-[url('/images/bg-boost-desktop.svg')]
+      "
+    >
+
+      <div
+        class="
+          mx-auto
+          w-[calc(100%-48px)]
+          max-w-[1110px]
+        "
+      >
+
+        <h2
+          class="
+            mb-5
+            text-[30px]
+            font-bold
+            md:text-[34px]
+          "
+        >
+          Boost your links today
+        </h2>
+
+        <a
+          href="#shorten"
+          class="
+            inline-block
+            rounded-full
+            bg-[#2acfcf]
+            px-[30px]
+            py-[11px]
+            font-bold
+            text-white
+            transition-opacity
+            hover:opacity-70
+          "
+        >
+          Get Started
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer
+    id="resources"
+    class="
+      bg-[#232127]
+      py-[70px]
+      text-white
+    "
+  >
+
+    <div
+      class="
+        mx-auto
+        flex
+        w-[calc(100%-48px)]
+        max-w-[1110px]
+        flex-col
+        items-center
+        gap-12
+        text-center
+        md:grid
+        md:grid-cols-[1.3fr_2fr_1fr]
+        md:items-start
+        md:gap-[60px]
+        md:text-left
+      "
+    >
+
+      <!-- Footer Logo -->
+      <a
+        href="#"
+        class="
+          text-[32px]
+          font-bold
+          leading-none
+          text-white
+        "
+      >
+        Shortly
+      </a>
+
+
+      <!-- Footer Links -->
+      <div
+        class="
+          grid
+          w-full
+          grid-cols-1
+          gap-10
+          md:grid-cols-3
+        "
+      >
+
+        <div
+          class="
+            flex
+            flex-col
+            gap-2
+          "
+        >
+
+          <h3
+            class="
+              mb-3
+              text-[15px]
+              font-bold
+            "
+          >
+            Features
+          </h3>
+
+          <a
+            href="#features"
+            class="
+              text-sm
+              text-[#9e9aa7]
+              hover:text-[#2acfcf]
+            "
+          >
+            Link Shortening
+          </a>
+
+          <a
+            href="#features"
+            class="
+              text-sm
+              text-[#9e9aa7]
+              hover:text-[#2acfcf]
+            "
+          >
+            Branded Links
+          </a>
+
+          <a
+            href="#features"
+            class="
+              text-sm
+              text-[#9e9aa7]
+              hover:text-[#2acfcf]
+            "
+          >
+            Analytics
+          </a>
+
+        </div>
+
+
+        <div
+          class="
+            flex
+            flex-col
+            gap-2
+          "
+        >
+
+          <h3
+            class="
+              mb-3
+              text-[15px]
+              font-bold
+            "
+          >
+            Resources
+          </h3>
+
+          <a
+            href="#"
+            class="
+              text-sm
+              text-[#9e9aa7]
+              hover:text-[#2acfcf]
+            "
+          >
+            Blog
+          </a>
+
+          <a
+            href="#"
+            class="
+              text-sm
+              text-[#9e9aa7]
+              hover:text-[#2acfcf]
+            "
+          >
+            Developers
+          </a>
+
+          <a
+            href="#"
+            class="
+              text-sm
+              text-[#9e9aa7]
+              hover:text-[#2acfcf]
+            "
+          >
+            Support
+          </a>
+
+        </div>
+
+
+        <div
+          class="
+            flex
+            flex-col
+            gap-2
+          "
+        >
+
+          <h3
+            class="
+              mb-3
+              text-[15px]
+              font-bold
+            "
+          >
+            Company
+          </h3>
+
+          <a
+            href="#"
+            class="
+              text-sm
+              text-[#9e9aa7]
+              hover:text-[#2acfcf]
+            "
+          >
+            About
+          </a>
+
+          <a
+            href="#"
+            class="
+              text-sm
+              text-[#9e9aa7]
+              hover:text-[#2acfcf]
+            "
+          >
+            Our Team
+          </a>
+
+          <a
+            href="#"
+            class="
+              text-sm
+              text-[#9e9aa7]
+              hover:text-[#2acfcf]
+            "
+          >
+            Careers
+          </a>
+
+          <a
+            href="#"
+            class="
+              text-sm
+              text-[#9e9aa7]
+              hover:text-[#2acfcf]
+            "
+          >
+            Contact
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- Social Icons -->
+      <div
+        class="
+          flex
+          justify-center
+          gap-6
+          md:justify-end
+        "
+      >
+
+        <a
+          href="#"
+          aria-label="Facebook"
+          class="transition-opacity hover:opacity-70"
+        >
+          <img
+            src="/images/icon-facebook.svg"
+            alt=""
+            class="h-6 w-6"
+          >
+        </a>
+
+        <a
+          href="#"
+          aria-label="Twitter"
+          class="transition-opacity hover:opacity-70"
+        >
+          <img
+            src="/images/icon-twitter.svg"
+            alt=""
+            class="h-6 w-6"
+          >
+        </a>
+
+        <a
+          href="#"
+          aria-label="Pinterest"
+          class="transition-opacity hover:opacity-70"
+        >
+          <img
+            src="/images/icon-pinterest.svg"
+            alt=""
+            class="h-6 w-6"
+          >
+        </a>
+
+        <a
+          href="#"
+          aria-label="Instagram"
+          class="transition-opacity hover:opacity-70"
+        >
+          <img
+            src="/images/icon-instagram.svg"
+            alt=""
+            class="h-6 w-6"
+          >
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
 
   <script type="module" src="/src/main.js"></script>
+
 </body>
 </html>
