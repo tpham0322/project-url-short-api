@@ -1,95 +1,170 @@
-# Frontend Mentor - Shortly URL shortening API Challenge
+# Shortly - URL Shortening API
 
-![Design preview for the Shortly URL shortening API coding challenge](./design/desktop-preview.jpg)
+A responsive URL shortening web application built as a solution to the [Frontend Mentor Shortly URL shortening API challenge](https://www.frontendmentor.io/challenges/url-shortening-api-landing-page-2ce3ob-G).
 
-## Welcome! 👋
+Users can enter a valid URL, shorten it using the Bitly API, copy the shortened URL, and access previously shortened links after refreshing the page.
 
-Thanks for checking out this front-end coding challenge.
+## Features
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+- Responsive design for desktop and mobile devices
+- Shorten valid URLs using the Bitly API
+- Display shortened URLs dynamically
+- Copy shortened URLs to the clipboard
+- Save shortened links using browser `localStorage`
+- Restore saved links after refreshing the page
+- Form validation for empty and invalid URLs
+- Mobile navigation menu
+- Accessible form labels and ARIA attributes
+- Loading state while shortening URLs
+- Error handling for failed API requests
 
-**To do this challenge, you need a basic understanding of HTML, CSS and JavaScript.**
+## Technologies Used
 
-## The challenge
+- HTML5
+- CSS3
+- JavaScript
+- Tailwind CSS
+- Vite
+- Bitly API
+- Local Storage API
 
-Your challenge is to build out this landing page, integrate with the [Clean URI API](https://cleanuri.com/docs) and get it looking as close to the design as possible.
+## Project Structure
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+```text
+URL-SHORTENING-API/
+├── design/
+├── images/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── main.js
+│   └── style.css
+├── index.html
+├── package.json
+├── package-lock.json
+└── vite.config.js
+```
 
-Your users should be able to:
+## Getting Started
 
-- View the optimal layout for the site depending on their device's screen size
-- Shorten any valid URL
-- See a list of their shortened links, even after refreshing the browser
-- Copy the shortened link to their clipboard in a single click
-- Receive an error message when the `form` is submitted if:
-  - The `input` field is empty
+### Prerequisites
 
-Want some support on the challenge? [Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+Make sure you have [Node.js](https://nodejs.org/) installed.
 
-## Where to find everything
+### Installation
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+Clone the repository:
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+```bash
+git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+```
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+Navigate into the project:
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+```bash
+cd URL-SHORTENING-API
+```
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+Install the dependencies:
 
-## Building your project
+```bash
+npm install
+```
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+### Run the Development Server
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+Start Vite:
 
-## Deploying your project
+```bash
+npm run dev
+```
 
-It's worth noting that you may run into a [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) error once you host your project that prevents the API request from succeeding. To prevent this, you'll need to research proxy servers or how to implement one yourself. As mentioned above, there are many ways to host your project for free. Our recommended hosts for this challenge (because they allow for serverless functions if needed for the proxy) are:
+Vite will provide a local development URL, usually:
 
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+```text
+http://localhost:5173
+```
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+Open the URL in your browser.
 
-## Create a custom `README.md`
+## Bitly API
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+This project uses the Bitly API to create shortened URLs.
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+The Bitly API requires an access token to authenticate requests.
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
 
-## Submitting your solution
+## How It Works
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+1. The user enters a URL.
+2. JavaScript validates the URL.
+3. The application sends the URL to the Bitly API.
+4. Bitly returns a shortened URL.
+5. The shortened URL is displayed on the page.
+6. The user can copy the shortened URL with the **Copy** button.
+7. The link is stored in `localStorage`.
+8. Saved links are restored when the page is refreshed.
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+## Local Storage
 
-## Sharing your solution
+Shortened links are stored in the browser using `localStorage`.
 
-There are multiple places you can share your solution:
+Example stored data:
 
-1. Share your solution page in the **#finished-projects** channel of the [community](https://www.frontendmentor.io/community). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+```json
+[
+  {
+    "original": "https://example.com",
+    "shortened": "https://bit.ly/example"
+  }
+]
+```
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+This allows previously shortened links to remain visible after refreshing the page.
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+## Responsive Design
 
-## Got feedback for us?
+The application was designed to support:
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+- Mobile: 375px
+- Desktop: 1440px
 
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
+The layout is responsive and adapts to different screen sizes.
 
-**Have fun building!** 🚀
+## Accessibility
+
+Accessibility considerations include:
+
+- Semantic HTML
+- Form labels
+- ARIA attributes
+- `aria-expanded` for the mobile navigation
+- `aria-controls` for navigation relationships
+- `aria-invalid` for form errors
+- `aria-live` for dynamically generated results
+- Keyboard-accessible buttons and links
+
+## What I Learned
+
+Through this project, I practiced:
+
+- Working with REST APIs
+- Using asynchronous JavaScript with `async`/`await`
+- Handling API responses and errors
+- DOM manipulation
+- Browser `localStorage`
+- Clipboard API
+- Responsive design with Tailwind CSS
+- Form validation
+- Accessibility with ARIA attributes
+- Building and running a project with Vite
+
+## Credits
+
+This project was created as a solution to the **Frontend Mentor Shortly URL shortening API challenge**.
+
+Challenge provided by [Frontend Mentor](https://www.frontendmentor.io/).
+
+## Author
+
+**Truong Pham**
