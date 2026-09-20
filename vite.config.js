@@ -3,12 +3,9 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  base: "/project-url-short-api-react/",
+  base: "/project-url-short-api/",
   plugins: [
     react(),
     tailwindcss()
-  ],
-  build: {
-    assetsDir: "assets"
-  }
+  ]
 });
