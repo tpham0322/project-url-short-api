@@ -19,10 +19,27 @@ export async function shortenUrl(longUrl) {
     })
   });
 
-  const data = await response.json();
+  const text = await response.text();
+
+  console.log("Bitly status:", response.status);
+  console.log("Bitly response:", text);
+
+  let data;
+
+  try {
+    data = JSON.parse(text);
+  } catch {
+    throw new Error(
+      `Bitly returned a non-JSON response (${response.status}).`
+    );
+  }
 
   if (!response.ok) {
-    throw new Error(data.message || "Unable to shorten URL.");
+    throw new Error(
+      data.message ||
+      data.description ||
+      `Bitly request failed (${response.status}).`
+    );
   }
 
   return data.link;
