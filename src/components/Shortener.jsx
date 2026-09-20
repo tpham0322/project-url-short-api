@@ -1,208 +1,125 @@
 import { useState } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
-import { shortenURL } from "../services/bitlyApi";
 import ResultCard from "./ResultCard";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { shortenUrl } from "../services/bitlyApi";
 
 function Shortener() {
   const [url, setUrl] = useState("");
-
-  const [links, setLinks] = useLocalStorage(
-    "shortly-links",
-    []
-  );
-
   const [error, setError] = useState("");
-
   const [loading, setLoading] = useState(false);
 
-  const isValidURL = (value) => {
-    try {
-      const parsedURL = new URL(value);
+  const [links, setLinks] = useLocalStorage("shortly-links", []);
 
-      return (
-        parsedURL.protocol === "http:" ||
-        parsedURL.protocol === "https:"
-      );
-    } catch {
-      return false;
-    }
-  };
-
-  const handleSubmit = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
 
+    const trimmedUrl = url.trim();
+
+    if (!trimmedUrl) {
+      setError("Please add a link.");
+      return;
+    }
+
+    try {
+      new URL(trimmedUrl);
+    } catch {
+      setError("Please enter a valid URL.");
+      return;
+    }
+
     setError("");
-
-    const trimmedURL = url.trim();
-
-    if (!trimmedURL) {
-      setError("Please add a link");
-      return;
-    }
-
-    if (!isValidURL(trimmedURL)) {
-      setError("Please enter a valid URL");
-      return;
-    }
-
     setLoading(true);
 
     try {
-      const shortenedUrl =
-        await shortenURL(trimmedURL);
+      const shortUrl = await shortenUrl(trimmedUrl);
 
-      const link = {
-        id: Date.now(),
-        original: trimmedURL,
-        shortened: shortenedUrl
+      const newLink = {
+        id: crypto.randomUUID(),
+        original: trimmedUrl,
+        short: shortUrl
       };
 
-      setLinks((previousLinks) => [
-        link,
-        ...previousLinks
-      ]);
-
+      setLinks((currentLinks) => [newLink, ...currentLinks]);
       setUrl("");
-    } catch (error) {
-      console.error(error);
-
+    } catch (err) {
       setError(
-        "Unable to shorten this link. Please try again."
+        err.message || "Unable to shorten this link. Please try again."
       );
     } finally {
       setLoading(false);
     }
-  };
+  }
+
+  function handleDelete(id) {
+    setLinks((currentLinks) =>
+      currentLinks.filter((link) => link.id !== id)
+    );
+  }
 
   return (
     <section
-      id="shorten"
-      className="bg-[#eff1f7] pb-[100px]"
+      id="shortener"
+      className="bg-[#eff1f7] px-6 pb-20 pt-1 lg:px-8"
     >
-      <div
-        className="
-          mx-auto
-          w-[calc(100%-48px)]
-          max-w-[1110px]
-        "
-      >
-        <form
-          onSubmit={handleSubmit}
-          className="
-            relative
-            top-[-68px]
-            flex
-            flex-col
-            gap-6
-            rounded-[10px]
-            bg-[#3b3054]
-            bg-[url('/images/bg-shorten-mobile.svg')]
-            bg-cover
-            bg-center
-            p-6
-            md:flex-row
-            md:items-stretch
-            md:bg-[url('/images/bg-shorten-desktop.svg')]
-            md:px-16
-            md:py-[52px]
-          "
-        >
-          <div className="relative flex-1">
-            <label
-              htmlFor="url-input"
-              className="sr-only"
-            >
-              Enter a URL to shorten
-            </label>
-
-            <input
-              id="url-input"
-              name="url"
-              type="url"
-              value={url}
-              onChange={(event) => {
-                setUrl(event.target.value);
-
-                if (error) {
-                  setError("");
-                }
-              }}
-              placeholder="Shorten a link here..."
-              autoComplete="url"
-              aria-describedby="url-error"
-              aria-invalid={Boolean(error)}
-              className={`
-                min-h-16
-                w-full
-                rounded-[7px]
-                border-[3px]
-                bg-white
-                px-5
-                text-[#232127]
-                outline-none
-                placeholder:text-[#9e9aa7]
-                focus:border-[#2acfcf]
-
-                ${
-                  error
-                    ? "border-[#f46262]"
-                    : "border-transparent"
-                }
-              `}
-            />
-
-            <p
-              id="url-error"
-              className="
-                absolute
-                left-0
-                top-[calc(100%+3px)]
-                text-[13px]
-                italic
-                text-[#f46262]
-              "
-              role="alert"
-            >
-              {error}
-            </p>
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="
-              min-w-[150px]
-              rounded-[7px]
-              bg-[#2acfcf]
-              px-6
-              py-3
-              font-bold
-              text-white
-              transition-opacity
-              hover:opacity-70
-              disabled:cursor-not-allowed
-              disabled:opacity-60
-            "
-          >
-            {loading
-              ? "Shortening..."
-              : "Shorten It!"}
-          </button>
-        </form>
-
+      <div className="mx-auto -mt-16 max-w-6xl">
         <div
-          className="
-            mt-[-44px]
-            flex
-            flex-col
-            gap-4
-          "
-          aria-live="polite"
+          className="rounded-lg bg-[#3b3054] p-6 md:p-10"
+          style={{
+            backgroundImage: `url(${import.meta.env.BASE_URL}images/bg-shorten-desktop.svg)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
         >
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4 md:flex-row"
+          >
+            <div className="flex-1">
+              <label htmlFor="url" className="sr-only">
+                Enter URL
+              </label>
+
+              <input
+                id="url"
+                type="url"
+                value={url}
+                onChange={(event) => setUrl(event.target.value)}
+                placeholder="Shorten a link here..."
+                className={`w-full rounded-lg bg-white px-5 py-4 text-[#2f2f3f] outline-none ${
+                  error
+                    ? "border-2 border-red-400 placeholder:text-red-400"
+                    : "border-2 border-transparent"
+                }`}
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ? "url-error" : undefined}
+              />
+
+              {error && (
+                <p
+                  id="url-error"
+                  className="mt-2 text-sm italic text-red-400"
+                >
+                  {error}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="rounded-lg bg-[#2acfcf] px-8 py-4 font-bold text-white transition hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {loading ? "Shortening..." : "Shorten It!"}
+            </button>
+          </form>
+        </div>
+
+        <div className="mt-6 space-y-4">
           {links.map((link) => (
             <ResultCard
               key={link.id}
               link={link}
+              onDelete={handleDelete}
             />
           ))}
         </div>
