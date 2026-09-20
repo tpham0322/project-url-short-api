@@ -3,11 +3,9 @@ import { useState } from "react";
 function ResultCard({ link }) {
   const [copied, setCopied] = useState(false);
 
-  const copyLink = async () => {
+  async function handleCopy() {
     try {
-      await navigator.clipboard.writeText(
-        link.shortened
-      );
+      await navigator.clipboard.writeText(link.short);
 
       setCopied(true);
 
@@ -15,83 +13,35 @@ function ResultCard({ link }) {
         setCopied(false);
       }, 2000);
     } catch (error) {
-      console.error(error);
-
-      setCopied(false);
+      console.error("Unable to copy URL:", error);
     }
-  };
+  }
 
   return (
-    <article
-      className="
-        flex
-        flex-col
-        gap-3
-        rounded-md
-        bg-white
-        p-5
-
-        md:flex-row
-        md:items-center
-        md:gap-5
-        md:px-6
-        md:py-[18px]
-      "
-    >
-      <p
-        className="
-          min-w-0
-          overflow-hidden
-          text-ellipsis
-          whitespace-nowrap
-          text-[#232127]
-        "
-        title={link.original}
-      >
+    <div className="flex flex-col gap-4 rounded-lg bg-white p-5 md:flex-row md:items-center md:justify-between">
+      <p className="break-all text-lg text-[#2f2f3f]">
         {link.original}
       </p>
 
-      <a
-        href={link.shortened}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="
-          min-w-0
-          overflow-hidden
-          text-ellipsis
-          whitespace-nowrap
-          text-[#2acfcf]
-          md:ml-auto
-        "
-      >
-        {link.shortened}
-      </a>
+      <div className="flex flex-col gap-3 md:flex-row md:items-center">
+        <a
+          href={link.short}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="break-all text-[#2acfcf] hover:underline"
+        >
+          {link.short}
+        </a>
 
-      <button
-        type="button"
-        onClick={copyLink}
-        className={`
-          w-full
-          rounded-md
-          px-4
-          py-2
-          text-[15px]
-          font-bold
-          text-white
-          transition-opacity
-          hover:opacity-70
-          md:w-[105px]
-
-          ${
-            copied
-              ? "bg-[#3b3054]"
-              : "bg-[#2acfcf]"
-          }
-        `}
-      >
-        {copied ? "Copied!" : "Copy"}
-      </button>
-    </article>
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="rounded-lg bg-[#2acfcf] px-8 py-3 font-bold text-white transition hover:opacity-70"
+        >
+          {copied ? "Copied!" : "Copy"}
+        </button>
+      </div>
+    </div>
   );
 }
 
